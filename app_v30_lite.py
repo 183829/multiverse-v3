@@ -33,9 +33,10 @@ warnings.filterwarnings('ignore')
 import requests
 import numpy as np
 import pandas as pd
-from PIL import Image
+
+# Matplotlib 配置 - 移到顶部并延迟导入
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg', force=True)
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import io
