@@ -34,11 +34,21 @@ import requests
 import numpy as np
 import pandas as pd
 
-# Matplotlib 配置 - 移到顶部并延迟导入
+# Matplotlib 配置 - 关键修复（三重保障）
 import matplotlib
-matplotlib.use('Agg', force=True)
+# 第一层保障：设置环境变量
+os.environ['MPLBACKEND'] = 'Agg'
+# 第二层保障：强制使用非交互式后端
+matplotlib.use('Agg', warn=False, force=True)
+
+# 现在安全导入 matplotlib 相关模块
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+# 3D 绘图工具包（按需导入）
+try:
+    from mpl_toolkits.mplot3d import Axes3D
+except ImportError:
+    Axes3D = None
+
 import io
 import base64
 import re
